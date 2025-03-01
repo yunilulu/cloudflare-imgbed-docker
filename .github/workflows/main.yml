@@ -1,15 +1,11 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches: [ "main" ]  # 觸發條件：push 到 main 分支
-  pull_request:
-    branches: [ "main" ]  # 觸發條件：對 main 分支的 pull request
+  workflow_dispatch:  # 僅保留 workflow_dispatch 觸發
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -30,9 +26,3 @@ jobs:
         context: .
         push: true
         tags: ghcr.io/${{ github.repository }}:latest
-        # 可選: 如果需要，指定 Dockerfile 路徑
-        # file: ./path/to/Dockerfile
-        # 可選: 如果需要，新增其他 tag
-        # tags: |
-        #   ghcr.io/${{ github.repository }}:latest
-        #   ghcr.io/${{ github.repository }}:${{ github.sha }}
