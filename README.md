@@ -6,13 +6,15 @@ https://github.com/MarSeventh/CloudFlare-ImgBed
 此為它的 Dockerfile，還沒搞過任何優化。
 
 docker-compose.yml 使用示例，與 Dockerfile 放在同一個資料夾。
+可以使用這裡的 Dockerfile 自己 build 一個 image，或是拉這裡 actions 跑好的 image。
 ```yml
 version: "3.8"
 services:
   cloudflare-imgbed:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ghcr.io/yunilulu/cloudflare-imgbed-docker:latest
     container_name: cloudflare-imgbed
     ports:
       - "8080:8080"
